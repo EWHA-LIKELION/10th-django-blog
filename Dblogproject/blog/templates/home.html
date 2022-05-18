@@ -1,0 +1,21 @@
+<body style="padding:5px">
+
+
+<h1>{{blog_project}}</h1>
+<a href="{% url 'new' %}">새로운 글 만들기</a>
+
+{% for blog in blogs.all %}
+
+<div style="margin:10px; padding:5px; border:1px solid; border-color: gray; 
+border-radius: 10px; background-color: #ffffc2; ">
+<h3>{{blog.title}}</h3>
+
+{{blog.date}}
+<br>
+{{blog.summary}}
+<a href="{% url 'detail' blog.id%}">...more</a>
+
+</div>
+{% endfor %}
+</body>
+</html>
