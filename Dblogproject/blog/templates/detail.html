@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+{% extends 'base.html' %}   
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    {% block head %}
+    <title>Document</title>
+    {% endblock %}
+</head>
+<body>
+    {% block content %}
+    <h3>{{blog.title}}</h3>
+{{blog.date}}
+<br>
+{% if blog.photo %}
+<img src = "{{ blog.photo.url }}" alt="" height="200px;">
+{% endif %}
+<br>
+{{blog.body}}
+<br> 
+<div>
+    {% for hashtag in hashtags.all %} 
+    #{{hashtag}}
+    {% endfor %}
+</div>
+<a href = "{% url 'home' %}">홈으로 돌아가기</a>
+<a href = "{% url 'delete' blog.id %}">삭제하기</a>
+<a href = "{% url 'edit' blog.id %}">수정하기</a>
+<br>
+<a class="add_comment" href="{% url 'add_comment' blog.id %}">댓글달기</a>
+{% for comment in blog.comments.all %}
+<div class="comment">
+    <strong class="username">{{ comment.username }}</strong>
+    <div class="date">{{ comment.created_at }}</div>
+    <p>{{ comment.comment_text|linebreaks }}</p>
+</div>
+
+<a href = "{% url 'delete_comment' blog.id comment.id %}">댓글 삭제하기</a>
+{% empty %}
+<p>아직 댓글이 없어요 :(</p>
+{% endfor %}
+{% endblock %}
+</body>
+</html>
+
+
+
