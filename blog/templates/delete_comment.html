@@ -1,0 +1,12 @@
+{%extends 'base.html' %}
+
+{%block head %}
+<title>edit</title>
+{%endblock%}
+
+{%block content%}
+{%for i in comment_set.all %}
+<p>->{{i}} <a href = "{url'delete_comment'%}">삭제</a></p>
+<hr>
+{%endfor%}
+{%endblock%}
