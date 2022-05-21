@@ -1,7 +1,18 @@
+{% extends 'base.html' %}
+
+{% load static %}
+<head>
+
+    {% block head %}
+    <link rel="stylesheet" href="{% static 'css/test.css' %}">
+    <link rel="stylesheet" href="{% static 'css/test2.css' %}">
+    <title>Home</title>
+    {% endblock %}
+</head>
+{% block content %}
 <body style="padding:5px">
 
-
-<h1>{{blog_project}}</h1>
+<h1>blog_project</h1>
 <a href="{% url 'new' %}">새로운 글 만들기</a>
 
 {% for blog in blogs.all %}
@@ -17,5 +28,6 @@ border-radius: 10px; background-color: #ffffc2; ">
 
 </div>
 {% endfor %}
+{% endblock %}
 </body>
 </html>
