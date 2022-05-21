@@ -1,4 +1,6 @@
-{% block content %}
+{% extends 'base.html' %} {% block head %}
+<title>Add_Comment</title>
+{% endblock %} {% block content %}
 <h3>New Comment</h3>
 <form method="POST" class="post-form">
   {% csrf_token %} {{ form.as_p }}

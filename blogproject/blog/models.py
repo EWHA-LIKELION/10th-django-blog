@@ -1,3 +1,5 @@
+from distutils.command.upload import upload
+from tokenize import blank_re
 from django.db import models
 from django.utils import timezone
 
@@ -15,6 +17,7 @@ class Blog(models.Model):
   date = models.DateTimeField('date published')
   body = models.TextField()
   hashtag = models.ManyToManyField(HashTag)
+  photo = models.ImageField(blank = True, null = True, upload_to = "blog_photo")
 
   def __str__(self):
     return self.title
