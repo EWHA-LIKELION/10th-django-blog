@@ -1,4 +1,13 @@
-<body style="padding: 5px">
+{% extends 'base.html' %}
+
+{% load static %}
+
+{% block head %} 
+<link rel="stylesheet" href="{% static 'css/test.css' %}">
+<link rel="stylesheet" href="{% static 'css/test2.css' %}">
+<title>Home</title>
+{% endblock %} 
+{% block content %}
   <h1>Blog Project</h1>
   <a href="{% url 'new' %}">새로운 글 만들기</a>
 
@@ -21,4 +30,5 @@
     <a href="{% url 'detail' blog.id %}">...more</a>
   </div>
   {% endfor %}
+{% endblock %} 
 </body>
