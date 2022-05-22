@@ -1,0 +1,16 @@
+{%extends 'base.html' %}
+
+{%block head %}
+<title>edit</title>
+{%endblock%}
+
+{% block content %}
+<form action = "" method = "post" enctype = "multipart/form-data">
+    {% csrf_token %}
+    <table>
+    {{form.as_table}}
+    </table>
+    <input type="submit" value = "Write">
+</form>
+
+{% endblock %}

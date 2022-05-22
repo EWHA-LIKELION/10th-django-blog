@@ -1,0 +1,15 @@
+{%extends 'base.html' %}
+
+{%block head %}
+<title>edit</title>
+{%endblock%}
+
+{%block content%}
+<h1>Editing Blog</h1>
+    <form action = "{%url 'edit2' blog.id%}", method = "post">
+        {% csrf_token %}
+        <p>제목 : <input type = "text" name = "title" value = "{{blog.title}}"></p>
+        본문 : <textarea name = "body" id="" > {{blog.body}} </textarea>
+        <button type = "submit"> 제출 </button>
+    </form>
+{%endblock%}
