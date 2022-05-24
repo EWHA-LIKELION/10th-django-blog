@@ -1,28 +1,40 @@
-<h3>{{blog.title}}</h3>
-{{blog.date}}
-<br>
-{{blog.body}}
-<br>
-<div>
-    {%for hashtag in hashtags.all%}
-    #{{hashtag}}
-    {%endfor%}
-</div>
-<a href="{%url 'home'%}">홈으로 돌아가기</a>
-<br>
-<a href="{%url 'delete' blog.id%}">삭제하기</a>
-<br>
-<a href="{%url 'update' blog.id%}">수정하기</a>
-<br>
-<hr>
-<a class="add_comment" href="{%url 'add_comment' blog.id%}">댓글 달기</a>
-{%for comment in blog.comments.all%}
-    <div class="comment">
-        <strong class="username">{{comment.username}}</strong>
-        <div class="date">{{comment.created_at}}</div>
-        <p>{{comment.comment_text|linebreaks}}</p>
-        <a href="{%url 'delete_comment' blog.id comment.id%}">삭제</a>
+{%extends 'base.html'%}
+
+{%block head%}
+    <title>블로그 상세</title>
+{%endblock%}
+
+{%block content%}
+    <h3>{{blog.title}}</h3>
+    {{blog.date}}
+    <br>
+    {%if blog.photo%}
+        <img src="{{blog.photo.url}}" alt="" height="200px;">
+    {%endif%}
+    <br>
+    {{blog.body}}
+    <br>
+    <div>
+        {%for hashtag in hashtags.all%}
+        #{{hashtag}}
+        {%endfor%}
     </div>
-{%empty%}
-    <p>아직 댓글이 없어요 :(</p>
-{%endfor%}
+    <a href="{%url 'home'%}">홈으로 돌아가기</a>
+    <br>
+    <a href="{%url 'delete' blog.id%}">삭제하기</a>
+    <br>
+    <a href="{%url 'update' blog.id%}">수정하기</a>
+    <br>
+    <hr>
+    <a class="add_comment" href="{%url 'add_comment' blog.id%}">댓글 달기</a>
+    {%for comment in blog.comments.all%}
+        <div class="comment">
+            <strong class="username">{{comment.username}}</strong>
+            <div class="date">{{comment.created_at}}</div>
+            <p>{{comment.comment_text|linebreaks}}</p>
+            <a href="{%url 'delete_comment' blog.id comment.id%}">삭제</a>
+        </div>
+    {%empty%}
+        <p>아직 댓글이 없어요 :(</p>
+    {%endfor%}
+{%endblock%}

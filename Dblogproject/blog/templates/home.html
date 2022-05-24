@@ -1,14 +1,27 @@
-<h1>Blog project</h1>
-<a href="{%url 'new'%}">새로운 글 만들기</a>
+{%extends 'base.html'%}
 
-{%for blog in blogs.all%}
-<div style="margin:10px; padding:5px; border: 1px solid; border-color:gray; border-radius: 10px; background-color: #ffffc2;">
-{{blog.title}}
-<br>
-{{blog.date}}
-<br>
-{{blog.summary}}
-<a href="{%url 'detail' blog.id%}">...more</a>
-<br>
-</div>
-{%endfor%}
+{%load static%}
+
+{%block head%}
+<link rel="stylesheet" href="{%static 'css/test.css'%}">
+<link rel="stylesheet" href="{%static 'css/test2.css'%}">
+<title>블로그 홈</title>
+{%endblock%}
+
+
+{%block content%}
+    <h1>Blog project</h1>
+    <a href="{%url 'new'%}">새로운 글 만들기</a>
+
+    {%for blog in blogs.all%}
+    <div style="margin:10px; padding:5px; border: 1px solid; border-color:gray; border-radius: 10px; background-color: #ffffc2;">
+    {{blog.title}}
+    <br>
+    {{blog.date}}
+    <br>
+    {{blog.summary}}
+    <a href="{%url 'detail' blog.id%}">...more</a>
+    <br>
+    </div>
+    {%endfor%}
+{%endblock%}
