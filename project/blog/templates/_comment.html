@@ -1,0 +1,14 @@
+<a class="add_comment" href="{% url 'add_comment' blog.id %}">댓글 달기</a>
+    {% for comment in blog.comments.all %}
+        <div class="comment">
+            <strong class="username">{{ comment.username }}</strong>
+            <div class="date">{{ comment.created_at }}</div>
+            <p>{{ comment.comment_text|linebreaks }}</p>
+            <form action="{% url 'delete_comment' blog.id comment.id %}" method="POST">
+                {% csrf_token %}
+                <input type="submit" value="[x]">
+            </form>
+        </div>
+    {% empty %}
+        <p>아직 댓글이 없어요 :(</p>
+    {% endfor %}
