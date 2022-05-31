@@ -28,9 +28,19 @@
               <li class="nav-item">
                 <a class="nav-link active" aria-current="page" href="http://127.0.0.1:8000/">Home</a>
               </li>
+              {% if not user.is_authenticated %}
               <li class="nav-item">
-                <a class="nav-link" href="http://127.0.0.1:8000/new/">Post</a>
+                <a class="nav-link" href = "{% url 'login' %}">LOG-IN</a>
               </li>
+              <li class="nav-item">
+                <a class="nav-link" href = "{% url 'signup' %}">SIGN-UP</a>
+              </li>
+              {% endif %}
+              {% if user.is_authenticated %}              
+              <li class="nav-item">
+                <a class="nav-link" href = "{% url 'logout' %}">LOG-OUT</a>
+              </li>
+              {% endif %}
               <li class="nav-item dropdown">
                 <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
                   Dropdown
@@ -43,7 +53,7 @@
                 </ul>
               </li>
               <li class="nav-item">
-                <a class="nav-link disabled">Disabled</a>
+                <a class="nav-link" href="http://127.0.0.1:8000/new/">Post</a>
               </li>
             </ul>
             <form class="d-flex" role="search">
