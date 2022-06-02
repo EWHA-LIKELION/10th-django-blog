@@ -13,6 +13,10 @@
 <body style="padding:5px">
 
 <h1>blog_project</h1>
+{% if user.is_authenticated %}
+    아이디: {{user.username}} 닉네임 : {{user.nickname}} 나이: {{user.age}} 대학: {{user.university}} 위치: {{user.location}}
+{% endif %}
+<br>
 <a href="{% url 'new' %}">새로운 글 만들기</a>
 
 {% for blog in blogs.all %}
