@@ -9,7 +9,13 @@
 {% endblock %} 
 {% block content %}
   <h1>Blog Project</h1>
+
+  {% if user.is_authenticated %} 
+            아이디: {{user.username}} 닉네임: {{user.nickname}} 대학: {{user.university}} 위치: {{user.location}}
+  {% endif %} 
+  
   <a href="{% url 'new' %}">새로운 글 만들기</a>
+  <br>
 
   {%for blog in blogs.all%}
 
