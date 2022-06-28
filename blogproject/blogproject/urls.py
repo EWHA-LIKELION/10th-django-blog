@@ -17,6 +17,7 @@ from xml.dom.minidom import Document
 from django.contrib import admin
 from django.urls import path
 import blog.views
+import account.views
 from django.conf import settings
 from django.conf.urls.static import static
 
@@ -30,4 +31,7 @@ urlpatterns = [
     path('modify/<int:blog_id>/', blog.views.update, name = "update"),
     path('edit/<int:blog_id>/', blog.views.edit, name="edit"),
     path('<int:blog_id>/comment', blog.views.add_comment, name="add_comment"),
+    path('account/login', account.views.login_view, name="login"),
+    path('account/logout', account.views.logout_view, name="logout"),
+    path('account/signup', account.views.signup_view, name="signup"),
 ] + static(settings.MEDIA_URL, document_rood=settings.MEDIA_ROOT)
