@@ -16,6 +16,7 @@ Including another URLconf
 from django.contrib import admin
 from django.urls import path
 import blog.views
+import account.views
 
 from django.conf import settings
 from django.conf.urls.static import static
@@ -31,4 +32,7 @@ urlpatterns = [
     path('<int:blog_id>/comment', blog.views.add_comment, name="add_comment"),
     path('<int:blog_id>/comment/<int:comment_id>',
          blog.views.delete_comment, name="delete_comment"),
+    path('account/login', account.views.login_view, name="login"),
+    path('account/logout', account.views.logout_view, name="logout"),
+    path('account/signup', account.views.signup_view, name="signup"),
 ] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)

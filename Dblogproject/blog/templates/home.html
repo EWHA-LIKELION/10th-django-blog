@@ -11,6 +11,10 @@
 
 {%block content%}
     <h1>Blog project</h1>
+    {%if user.is_authenticated%}
+        아이디: {{user.username}}  닉네임: {{user.nickname}} 대학: {{user.university}}  위치: {{user.location}} 취미: {{user.hobby}}
+    {%endif%}
+    <br>
     <a href="{%url 'new'%}">새로운 글 만들기</a>
 
     {%for blog in blogs.all%}
